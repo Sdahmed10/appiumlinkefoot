@@ -3,14 +3,11 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.testng.annotations.Test;
-
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
-
-import static io.appium.java_client.AppiumBy.accessibilityId;
 
 public class loginbasics {
     public AndroidDriver driver;
@@ -24,16 +21,14 @@ public class loginbasics {
                 .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")));
         service.start();
         UiAutomator2Options options = new UiAutomator2Options();
-
         options.setDeviceName("Pixel 2 XL API 33");
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
         options.setCapability("autoGrantPermissions", "true");
-        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 38.apk");
+        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 39.apk");
         System.out.println("Serveur Appium démarré...");
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
         driver.manage().timeouts().implicitlyWait(8000, TimeUnit.SECONDS);
-
     }
 }
 
