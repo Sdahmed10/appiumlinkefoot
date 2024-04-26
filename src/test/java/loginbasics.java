@@ -2,7 +2,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class loginbasics {
     public AndroidDriver driver;
     public AppiumDriverLocalService service;
-    @Test
+    @BeforeMethod
     public void AppiumTest() throws URISyntaxException, MalformedURLException, InterruptedException {
         // AndroidDriver or IOSDriver
         // Appium code --> Appium Server --> Mobile
