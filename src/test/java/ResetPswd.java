@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 import static io.appium.java_client.AppiumBy.accessibilityId;
 import static org.openqa.selenium.By.xpath;
 
-public class ResetPwd extends loginbasics{
+public class ResetPswd extends loginbasics{
     @BeforeMethod
     public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
         AppiumTest();
@@ -67,6 +67,7 @@ public class ResetPwd extends loginbasics{
         }
     }
 }
+
 
 
 

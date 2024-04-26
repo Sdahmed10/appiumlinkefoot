@@ -19,7 +19,7 @@ public class editprofilecheckbox extends loginbasics {
     }
 
     @Test
-    public void edit1() throws URISyntaxException, MalformedURLException {
+    public void edit11() throws URISyntaxException, MalformedURLException {
         try {
             driver.findElement(accessibilityId("Se connecter")).click();
             // Cliquer sur le champ de saisie
