@@ -25,10 +25,10 @@ public class loginbasics {
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
         options.setCapability("autoGrantPermissions", "true");
-        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 41.apk");
+        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 9.apk");
         System.out.println("Serveur Appium démarré...");
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
-        driver.manage().timeouts().implicitlyWait(8000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
     }
 }
 

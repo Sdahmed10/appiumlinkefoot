@@ -11,10 +11,7 @@ import static org.openqa.selenium.By.xpath;
 
 public class sharescorecard extends loginbasics{
 
-    @BeforeMethod
-    public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
-        AppiumTest();
-    }
+
     @Test
     public void share() throws URISyntaxException, MalformedURLException {
         try {
