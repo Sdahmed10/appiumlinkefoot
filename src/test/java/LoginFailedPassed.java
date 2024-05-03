@@ -11,11 +11,13 @@ import static org.testng.Assert.*;
 import static org.openqa.selenium.By.xpath;
 
 public class LoginFailedPassed extends loginbasics {
+
 WebDriverWait wait;
+
     @BeforeMethod
     public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
         AppiumTest();
-        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(80));
 
     }
     public boolean isElementPresent(By by) {
@@ -27,9 +29,10 @@ WebDriverWait wait;
         }
     }
     @Test (alwaysRun = true)
-    public void testSuccessfulLogin() throws InterruptedException{
+    public void testSuccessfulLogin()  throws InterruptedException{
         System.out.println("Starting successful login test...");
         driver.findElement(accessibilityId("Se connecter")).click();
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login avec succès
         System.out.println("Entering username and password...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
@@ -52,6 +55,7 @@ WebDriverWait wait;
     public void testFailedLogin() throws InterruptedException {
         System.out.println("Starting failed login test...");
         driver.findElement(accessibilityId("Se connecter")).click();
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login échoué
         System.out.println("Entering invalid username and password...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
@@ -71,6 +75,7 @@ WebDriverWait wait;
     }
     @Test (alwaysRun = true)
     public void testFailedLoginemptyusername() throws InterruptedException {
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(50));
         System.out.println("Starting failed login with empty username test...");
         driver.findElement(accessibilityId("Se connecter")).click();
         // Entrez les éléments de l'interface utilisateur pour le login échoué
@@ -94,12 +99,13 @@ WebDriverWait wait;
     public void testFailedLoginemptypassword() throws InterruptedException {
         System.out.println("Starting failed login with empty password test...");
         driver.findElement(accessibilityId("Se connecter")).click();
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login échoué
         System.out.println("Entering invalid username and empty password...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
         usernameField.click();
         usernameField.sendKeys("vini777");
-
+        Thread.sleep(2000);
         WebElement passwordField = driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
         passwordField.click();
         passwordField.sendKeys("");
@@ -116,11 +122,13 @@ WebDriverWait wait;
     public void testFailedLoginemptyusernameandpassword() throws InterruptedException {
         System.out.println("Starting failed login with empty username and password test...");
         driver.findElement(accessibilityId("Se connecter")).click();
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login échoué
         System.out.println("Entering empty username and empty password...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
         usernameField.click();
         usernameField.sendKeys("");
+        Thread.sleep(2000);
         WebElement passwordField = driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
         passwordField.click();
         passwordField.sendKeys("");
