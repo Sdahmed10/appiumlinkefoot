@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import static io.appium.java_client.AppiumBy.accessibilityId;
+import static io.appium.java_client.AppiumBy.className;
 import static org.openqa.selenium.By.xpath;
 
 public class createGame extends loginbasics{
@@ -76,14 +77,14 @@ public class createGame extends loginbasics{
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"7, mardi 7 mai 2024\"]")).click();
             driver.findElement(accessibilityId("OK")).click();
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[10]/android.widget.ImageView")).click();
-            WebElement hour = driver.findElement(xpath("//android.widget.SeekBar[@content-desc=\"Sélectionner une heure 10\"]"));
+            WebElement hour = driver.findElement(className("android.widget.SeekBar"));
             Actions action1 = new Actions(driver);
             action1.moveToElement(hour).click().pause(100).click().perform();
             Thread.sleep(2000);
-            driver.findElement(xpath("//android.widget.EditText[@text=\"10\"]"))
+            driver.findElement(className("android.widget.SeekBar"))
                     .clear();
             Thread.sleep(2000);
-            driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"))
+            driver.findElement(className("android.widget.EditText"))
                     .sendKeys("9");
             driver.findElement(accessibilityId("OK")).click();
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[11]/android.widget.ImageView")).click();
