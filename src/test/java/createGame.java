@@ -2,7 +2,6 @@ import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
@@ -14,10 +13,7 @@ import static io.appium.java_client.AppiumBy.accessibilityId;
 import static org.openqa.selenium.By.xpath;
 
 public class createGame extends loginbasics{
-    WebDriver wait;
     AppiumDriverLocalService appiumDriverLocalService;
-
-
     @BeforeMethod
     public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
         appiumDriverLocalService = AppiumDriverLocalService.buildService(new AppiumServiceBuilder());
@@ -33,18 +29,15 @@ public class createGame extends loginbasics{
             e.printStackTrace();
         }
     }
-
     private void stopAppiumServer() {
         if (appiumDriverLocalService != null) {
             appiumDriverLocalService.stop();
         }
     }
-
     @AfterMethod
     public void quitDriver() {
         driver.quit();
     }
-
     @Test
     public void edit1() throws URISyntaxException, MalformedURLException {
         try {
@@ -83,11 +76,11 @@ public class createGame extends loginbasics{
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"7, mardi 7 mai 2024\"]")).click();
             driver.findElement(accessibilityId("OK")).click();
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[10]/android.widget.ImageView")).click();
-            WebElement hour = driver.findElement(xpath("//android.widget.SeekBar[@content-desc=\"Sélectionner une heure 09\"]"));
+            WebElement hour = driver.findElement(xpath("//android.widget.SeekBar[@content-desc=\"Sélectionner une heure 10\"]"));
             Actions action1 = new Actions(driver);
             action1.moveToElement(hour).click().pause(100).click().perform();
             Thread.sleep(2000);
-            driver.findElement(xpath("//android.widget.EditText[@text=\"09\"]"))
+            driver.findElement(xpath("//android.widget.EditText[@text=\"10\"]"))
                     .clear();
             Thread.sleep(2000);
             driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"))
