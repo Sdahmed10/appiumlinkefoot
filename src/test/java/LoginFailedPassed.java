@@ -1,6 +1,8 @@
 import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;
@@ -12,6 +14,7 @@ import static org.openqa.selenium.By.xpath;
 
 public class LoginFailedPassed extends loginbasics {
 
+
 WebDriverWait wait;
 
     @BeforeMethod
@@ -20,6 +23,7 @@ WebDriverWait wait;
         wait =  new WebDriverWait(driver, Duration.ofSeconds(80));
 
     }
+
     public boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
@@ -47,9 +51,9 @@ WebDriverWait wait;
         loginButton.click();
         // Ajoutez vos assertions ici pour vérifier que vous êtes connecté avec succès
         //System.out.println("Checking if 'Communauté' is displayed...");
-        assertTrue(driver.findElement(xpath("//android.view.View[@content-desc=\"Communauté\"]"))
-                .isDisplayed(), "Login unsuccessful, 'communauté' is not displayed on the screen.");
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//android.view.View[@content-desc=\"Communauté\"]")));
+        System.out.println("Login successful, 'communauté' is displayed on the screen.");
     }
     @Test (alwaysRun = true)
     public void testFailedLogin() throws InterruptedException {
@@ -75,9 +79,9 @@ WebDriverWait wait;
     }
     @Test (alwaysRun = true)
     public void testFailedLoginemptyusername() throws InterruptedException {
-        wait =  new WebDriverWait(driver, Duration.ofSeconds(50));
         System.out.println("Starting failed login with empty username test...");
         driver.findElement(accessibilityId("Se connecter")).click();
+        wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login échoué
         System.out.println("Entering empty username...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
@@ -88,6 +92,7 @@ WebDriverWait wait;
         passwordField.sendKeys("123456Aa@");
         driver.hideKeyboard();
         WebElement loginButton = driver.findElement(AppiumBy.xpath("(//android.view.View[@content-desc=\"Se connecter\"])[2]"));
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
         // Cliquer sur le bouton de connexion
         loginButton.click();
         // Ajoutez vos assertions ici pour vérifier que la connexion a échoué
@@ -120,11 +125,11 @@ WebDriverWait wait;
     }
     @Test (alwaysRun = true)
     public void testFailedLoginemptyusernameandpassword() throws InterruptedException {
+        try{
         System.out.println("Starting failed login with empty username and password test...");
         driver.findElement(accessibilityId("Se connecter")).click();
         wait =  new WebDriverWait(driver, Duration.ofSeconds(30));
         // Entrez les éléments de l'interface utilisateur pour le login échoué
-        System.out.println("Entering empty username and empty password...");
         WebElement usernameField = driver.findElement(AppiumBy.xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
         usernameField.click();
         usernameField.sendKeys("");
@@ -140,8 +145,14 @@ WebDriverWait wait;
         boolean isErrorMessageDisplayed = isElementPresent(accessibilityId("Veuillez saisir le mot de passe"));
         assertTrue(isErrorMessageDisplayed, "Error message is not displayed on the screen. Login failed as expected.");
         System.out.println("Error message is displayed on the screen. Login failed as expected.");
+    } catch (Exception e) {
+            System.out.println("Exception occurred: " + e.getMessage());
+            e.printStackTrace();
+            fail("An exception occurred: " + e.getMessage());
+        }
+
     }
-    }
+}
 
 
 

@@ -21,15 +21,26 @@ public class loginbasics {
                 .usingDriverExecutable(new File("/usr/local/bin/node"))
                 .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")));
         service.start();
+        int appiumPort = service.getUrl().getPort();
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("Pixel 2 XL API 33");
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
         options.setCapability("autoGrantPermissions", "true");
-        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 9.apk");
+        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 10.apk");
         System.out.println("Serveur Appium démarré...");
-        driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
+        driver = new AndroidDriver(new URI("http://127.0.0.1:" +appiumPort).toURL(), options);
         driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
+    }
+    @AfterMethod
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+        if (service != null && service.isRunning()) {
+            service.stop();
+            System.out.println("Serveur Appium arrêté...");
+        }
     }
 
 }
