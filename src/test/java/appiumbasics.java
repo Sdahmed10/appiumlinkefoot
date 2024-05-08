@@ -3,7 +3,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
-
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,7 +31,7 @@ public class appiumbasics {
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
         options.setCapability("autoGrantPermissions", "true");
-        options.setApp("/Users/takiacademy/eclipse-workspace/Ahmedappium/src/test/java/resources/app-release 36.apk");
+        options.setApp("/Users/takiacademy/IdeaProjects/appiumahmed/src/test/java/resources/app-release 10.apk");
         System.out.println("Serveur Appium démarré...");
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
@@ -44,7 +43,7 @@ public class appiumbasics {
         op.sendKeys("vini7");
         WebElement op1 = driver.findElement(xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
         op1.click();
-        op1.sendKeys("12345Aa@");
+        op1.sendKeys("123456Aa@");
         driver.hideKeyboard();
         WebElement ok = driver.findElement(xpath("(//android.view.View[@content-desc=\"Se connecter\"])[2]"));
         ok.click();
