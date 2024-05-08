@@ -92,7 +92,7 @@ public class createGame extends loginbasics{
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[11]/android.widget.ImageView")).click();
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"Sélectionner un emplacement\"]")).click();
             WebElement max = driver.findElement(xpath("//android.widget.ScrollView/android.view.View[19]"));
-            for(int i = 0; i < 16; i++) {
+            for(int i = 1; i < 10; i++) {
                 max.click();
             }
             Thread.sleep(2000);
