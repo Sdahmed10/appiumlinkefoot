@@ -15,8 +15,7 @@ public class login extends loginbasics{
     }
 
     @Test
-    public void edit1() throws URISyntaxException, MalformedURLException {
-        try {
+    public void edit1() throws InterruptedException {
             driver.findElement(accessibilityId("Se connecter")).click();
             // Cliquer sur le champ de saisie
             WebElement op = driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
@@ -36,8 +35,6 @@ public class login extends loginbasics{
             }
             Thread.sleep(5000);
             driver.quit();
-        }catch (Exception e) {
-                e.printStackTrace();
-            }
+        }
 }
-    }
+
