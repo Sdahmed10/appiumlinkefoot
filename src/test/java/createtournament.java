@@ -7,34 +7,28 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
-
 import static io.appium.java_client.AppiumBy.accessibilityId;
 import static org.openqa.selenium.By.xpath;
 
 public class createtournament extends loginbasics {
     AppiumDriverLocalService appiumDriverLocalService;
-
     @BeforeMethod
     public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
         appiumDriverLocalService = AppiumDriverLocalService.buildService(new AppiumServiceBuilder());
         appiumDriverLocalService.start();
         AppiumTest();
     }
-
     private void stopAppiumServer() {
         if (appiumDriverLocalService != null) {
             appiumDriverLocalService.stop();
         }
     }
-
     @AfterMethod
     public void quitDriver() {
         driver.quit();
     }
-
     @Test
     public void main()  {
         driver.findElement(accessibilityId("Se connecter")).click();
@@ -83,7 +77,6 @@ public class createtournament extends loginbasics {
         driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[5]/android.widget.ImageView")).click();
         driver.findElement(AppiumBy.xpath("//android.widget.Button[@content-desc=\"31, vendredi 31 mai 2024\"]")).click();
         driver.findElement(AppiumBy.xpath("//android.widget.Button[@content-desc=\"OK\"]")).click();
-
         boolean canScrollMore1 = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
                 ImmutableMap.of("left", 100, "top", 100, "width", 200, "height", 800, "direction", "down", "percent",
                         3.0));
@@ -107,16 +100,5 @@ public class createtournament extends loginbasics {
         } else {
             System.out.println("creatio unsuccessful");
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 }
