@@ -1,3 +1,4 @@
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
@@ -19,11 +20,13 @@ import static org.openqa.selenium.By.xpath;
 
 public class CreateTryout extends loginbasics {
     AppiumDriverLocalService appiumDriverLocalService;
+
     @BeforeMethod
     public void setUpDriver() throws URISyntaxException, MalformedURLException, InterruptedException {
         appiumDriverLocalService = AppiumDriverLocalService.buildService(new AppiumServiceBuilder());
         appiumDriverLocalService.start();
         AppiumTest();
+
     }
     private void stopAppiumServer() {
         if (appiumDriverLocalService != null) {
@@ -31,7 +34,8 @@ public class CreateTryout extends loginbasics {
         }
     }
     @AfterMethod
-    public void quitDriver() {
+    public void quitDriver() throws InterruptedException {
+        Thread.sleep(4000);
         driver.quit();
     }
     @Test
@@ -66,14 +70,14 @@ public class CreateTryout extends loginbasics {
             }
             System.out.println("Clicked on 'players'");
             WebElement price = driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[9]"));
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 price.click();
             }
             System.out.println("Clicked on 'price'");
-            driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[10]/android.view.View")).click();
-            driver.findElement(AppiumBy.accessibilityId("8, mercredi 8 mai 2024")).click();
+            driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[10]/android.widget.EditText")).click();
+            driver.findElement(AppiumBy.accessibilityId("28, mardi 28 mai 2024")).click();
             driver.findElement(AppiumBy.accessibilityId("OK")).click();
-            driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[11]/android.view.View")).click();
+            driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.view.View[11]/android.widget.EditText")).click();
             WebElement hour = driver.findElement(className("android.widget.SeekBar"));
             Actions action1 = new Actions(driver);
             action1.moveToElement(hour).click().pause(Duration.ofMillis(100)).click().perform();
@@ -85,7 +89,6 @@ public class CreateTryout extends loginbasics {
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[12]/android.widget.ImageView")).click();
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"Sélectionner un emplacement\"]")).click();
             driver.findElement(AppiumBy.accessibilityId("Positions")).click();
-            //driver.findElement(AppiumBy.accessibilityId("GK"))
             // List of accessibility IDs
             List<String> accessibilityIds = new ArrayList<>();
             accessibilityIds.add("GK");
@@ -108,7 +111,23 @@ public class CreateTryout extends loginbasics {
             for (int i = 0; i < 1; i++) {
                 min.click();
             }
-            driver.findElement(xpath("//android.widget.Button[@content-desc=\"Partager\"]")).click();
+            WebElement description = driver.findElement(AppiumBy.xpath("//android.widget.ScrollView/android.widget.EditText"));
+            description.click();
+            description.sendKeys("Test");
+            driver.hideKeyboard();
+            boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+                    ImmutableMap.of("left", 100, "top", 100, "width", 200, "height", 600, "direction", "up", "percent",
+                            1.0));
+            Thread.sleep(5000);
+            WebElement share = driver.findElement(accessibilityId("Partager"));
+            share.click();
+            Thread.sleep(3000);
+            boolean isDisplayed1 = driver.findElement(xpath("//android.view.View[@content-desc=\"Essai créé avec succès\"]")).isDisplayed();
+            if (isDisplayed1) {
+                System.out.println("Essai créé avec succès");
+            } else {
+                System.out.println("erreur de creation d'essai");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
