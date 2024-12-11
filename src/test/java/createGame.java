@@ -26,20 +26,15 @@ public class createGame extends loginbasics{
     @AfterMethod
     public void tearDown() {
         try {
-            Thread.sleep(5000); // Attendre 5 secondes
-            stopAppiumServer(); // Arrêter le serveur Appium
-        } catch (InterruptedException e) {
+            if (driver != null) {
+                driver.quit();
+            }
+            if (appiumDriverLocalService != null) {
+                appiumDriverLocalService.stop();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    private void stopAppiumServer() {
-        if (appiumDriverLocalService != null) {
-            appiumDriverLocalService.stop();
-        }
-    }
-    @AfterMethod
-    public void quitDriver() {
-        driver.quit();
     }
     @Test
     public void edit1() throws URISyntaxException, MalformedURLException {
@@ -48,10 +43,10 @@ public class createGame extends loginbasics{
             // Cliquer sur le champ de saisie
             WebElement op = driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
             op.click();
-            op.sendKeys("rashford10");
+            op.sendKeys("walker22");
             WebElement op1 = driver.findElement(xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
             op1.click();
-            op1.sendKeys("12345Aa@");
+            op1.sendKeys("123456Aa@");
             driver.hideKeyboard();
             WebElement ok = driver.findElement(xpath("(//android.view.View[@content-desc=\"Se connecter\"])[2]"));
             ok.click();
@@ -76,8 +71,9 @@ public class createGame extends loginbasics{
                 price.click();
             }
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[9]/android.widget.ImageView")).click();
-            driver.findElement(xpath("//android.widget.Button[@content-desc=\"10, vendredi 10 mai 2024\"]")).click();
+            driver.findElement(xpath("//android.widget.Button[@content-desc=\"25, vendredi 25 octobre 2024\"]")).click();
             driver.findElement(accessibilityId("OK")).click();
+            driver.hideKeyboard();
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[10]/android.widget.ImageView")).click();
             WebElement hour = driver.findElement(className("android.widget.SeekBar"));
             Actions action1 = new Actions(driver);
@@ -89,8 +85,11 @@ public class createGame extends loginbasics{
             driver.findElement(className("android.widget.EditText"))
                     .sendKeys("9");
             driver.findElement(accessibilityId("OK")).click();
+            driver.hideKeyboard();
             driver.findElement(xpath("//android.widget.ScrollView/android.view.View[11]/android.widget.ImageView")).click();
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"Sélectionner un emplacement\"]")).click();
+            driver.hideKeyboard();
+            Thread.sleep(2000);
             WebElement max = driver.findElement(xpath("//android.widget.ScrollView/android.view.View[19]"));
             for(int i = 1; i < 10; i++) {
                 max.click();
@@ -104,9 +103,9 @@ public class createGame extends loginbasics{
                 min.click();
             }
             Thread.sleep(2000);
-            boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
-                    ImmutableMap.of("left", 100, "top", 100, "width", 200, "height", 600, "direction", "up", "percent",
-                            2.0));
+//            boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
+//                    ImmutableMap.of("left", 100, "top", 100, "width", 200, "height", 600, "direction", "up", "percent",
+//                            2.0));
             driver.findElement(xpath("//android.widget.Button[@content-desc=\"Partager\"]")).click();
             Thread.sleep(1000);
             boolean isDisplayed1 = driver.findElement(xpath("//android.view.View[@content-desc=\"Match créé avec succès\"]")).isDisplayed();

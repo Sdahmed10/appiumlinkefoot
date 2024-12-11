@@ -22,10 +22,10 @@ public class editprofile extends loginbasics {
             // Cliquer sur le champ de saisie
             WebElement op = driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
             op.click();
-            op.sendKeys("rashford10");
+            op.sendKeys("walker22");
             WebElement op1 = driver.findElement(xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
             op1.click();
-            op1.sendKeys("12345Aa@");
+            op1.sendKeys("123456Aa@");
             driver.hideKeyboard();
             WebElement ok = driver.findElement(xpath("(//android.view.View[@content-desc=\"Se connecter\"])[2]"));
             ok.click();
@@ -36,27 +36,39 @@ public class editprofile extends loginbasics {
                 System.out.println("Login unsuccessful, 'communauté' is not displayed on the screen.");
             }
             WebElement profile = driver
-                    .findElement(accessibilityId("Profil\n" + "Onglet 5 sur 5"));
+                    .findElement(xpath("//android.widget.ImageView[@content-desc=\"Profile\n" +
+                            "Onglet 5 sur 5\"]"));
             profile.click();
             WebElement myaccount = driver.findElement(accessibilityId("Mon compte"));
             myaccount.click();
-            boolean canScrollMore = (Boolean) ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture",
-                    ImmutableMap.of("left", 100, "top", 100, "width", 200, "height", 1500, "direction", "down", "percent",
-                            3.0));
-            WebElement description = driver.findElement(By.xpath("//android.widget.EditText[@text=\"udhd\"]"));
+            boolean elementVisible = false;
+            while (!elementVisible) {
+                try {
+                    WebElement descriptionField = driver.findElement(By.xpath("//android.widget.EditText[@text=\"Test1\"]"));
+                    elementVisible = descriptionField.isDisplayed();
+                } catch (Exception e) {
+                    // Use scroll gesture for more control
+                    ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                            "left", 100, "top", 500,
+                            "width", 200, "height", 1500,
+                            "direction", "down",
+                            "percent", 5.0));
+                }
+            }
+            WebElement description = driver.findElement(By.xpath("//android.widget.EditText[@text=\"Test1\"]"));
             description.click();
             description.clear();
-            description.sendKeys("Test1");
+            description.sendKeys("Joueur de football professionnel");
             driver.hideKeyboard();
 
             WebElement save = driver.findElement(accessibilityId("Enregistrer les modifications"));
             save.click();
-            boolean isDisplayed1 = driver.findElement(accessibilityId("marcos rashford\n" +
-                    "rashford10")).isDisplayed();
-            if (isDisplayed) {
-                System.out.println("modif successful, 'rashford' is displayed on the screen.");
+            boolean isDisplayed1 = driver.findElement(accessibilityId("walker22\n" +
+                    "walker22")).isDisplayed();
+            if (isDisplayed1) {
+                System.out.println("modif successful, 'walker22' is displayed on the screen.");
             } else {
-                System.out.println("modif unsuccessful, 'rashford' is not displayed on the screen.");
+                System.out.println("modif unsuccessful, 'walker22' is not displayed on the screen.");
             }
             driver.quit();
         } catch (Exception e) {

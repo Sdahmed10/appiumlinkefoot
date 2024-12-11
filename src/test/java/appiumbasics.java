@@ -27,7 +27,7 @@ public class appiumbasics {
                         .usingDriverExecutable(new File("/usr/local/bin/node"))
                         .withAppiumJS(new File("/usr/local/lib/node_modules/appium/build/lib/main.js")));UiAutomator2Options options = new UiAutomator2Options();
                 service.start();
-        options.setDeviceName("Pixel 2 XL API 33");
+        options.setDeviceName("LinkefootStaging");
         options.setPlatformName("android");
         options.setAutomationName("UiAutomator2");
         options.setCapability("autoGrantPermissions", "true");

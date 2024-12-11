@@ -15,15 +15,15 @@ public class login extends loginbasics{
     }
 
     @Test
-    public void edit1() throws InterruptedException {
+    public void loginsuccess() throws InterruptedException {
             driver.findElement(accessibilityId("Se connecter")).click();
             // Cliquer sur le champ de saisie
             WebElement op = driver.findElement(xpath("//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.widget.EditText[1]"));
             op.click();
-            op.sendKeys("sitofet691@konican.com");
+            op.sendKeys("fifa");
             WebElement op1 = driver.findElement(xpath("//android.widget.ScrollView/android.widget.EditText[2]"));
             op1.click();
-            op1.sendKeys("12345Aa@");
+            op1.sendKeys("12345678@Aa");
             driver.hideKeyboard();
             WebElement ok = driver.findElement(xpath("(//android.view.View[@content-desc=\"Se connecter\"])[2]"));
             ok.click();
@@ -33,7 +33,7 @@ public class login extends loginbasics{
             } else {
                 System.out.println("Login unsuccessful, 'communauté' is not displayed on the screen.");
             }
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             driver.quit();
         }
 }
